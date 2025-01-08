@@ -1,4 +1,4 @@
-In order to run the application, you have to just run DemoApplication class in src/main/java/com.example.demo.
+In order to run the application, you have to just run DemoApplication class in demo/src/main/java/com.example.demo.
 
 Example request:
 POST http://localhost:8080/logistics/optimize
