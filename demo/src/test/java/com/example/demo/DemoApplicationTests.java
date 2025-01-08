@@ -53,5 +53,23 @@ class DemoApplicationTests {
                 .andExpect(jsonPath("$.transfers.length()").value(0));
     }
 
+    @Test
+    void testShouldContainAllTransfers() throws Exception {
+        mockMvc.perform(post("/logistics/optimize")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "transfers": [
+                                                    {"weight": 10, "cost": 20},
+                                                    {"weight": 3, "cost": 5},
+                                                    {"weight": 5, "cost": 10},
+                                                    {"weight": 8, "cost": 15}
+                                                  ],
+                                                  "maxWeight": 26
+                                }""")).andExpect(status().isOk())
+                .andExpect(jsonPath("$.totalCost").value(50))
+                .andExpect(jsonPath("$.transfers.length()").value(4));
+    }
+
 
 }
